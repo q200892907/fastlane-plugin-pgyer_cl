@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc07a063-af88-444f-a3b0-229152a4a159" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/fastlane-plugin-pgyer_cl.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.rakeTasks" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.rspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.rubocop.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rakefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/circle.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane-plugin-pgyer_cl.gemspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/Fastfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fastlane/Pluginfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/actions/pgyer_cl_action.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/helper/pgyer_cl_helper.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/version.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spec/pgyer_cl_action_spec.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spec/spec_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/fastlane/Fastfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/actions/pgyer_cl_action.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/actions/pgyer_cl_action.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/version.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/version.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +26,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/fastlane" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fastlane" />
+    </key>
   </component>
   <component name="RunManager" selected="Ruby.pgyer_cl">
     <configuration name="pgyer_cl" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
@@ -123,6 +110,12 @@
       <workItem from="1622527670809" duration="1624000" />
       <workItem from="1622529484125" duration="1781000" />
       <workItem from="1622531296855" duration="1796000" />
+      <workItem from="1622533441719" duration="1694000" />
+      <workItem from="1622535273206" duration="1571000" />
+      <workItem from="1622537085033" duration="1273000" />
+      <workItem from="1622540907163" duration="896000" />
+      <workItem from="1622542236385" duration="455000" />
+      <workItem from="1622544045022" duration="636000" />
     </task>
     <servers />
   </component>

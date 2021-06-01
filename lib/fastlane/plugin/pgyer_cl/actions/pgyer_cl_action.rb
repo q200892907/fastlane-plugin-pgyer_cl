@@ -6,7 +6,7 @@ module Fastlane
   module Actions
     class PgyerClAction < Action
       def self.run(params)
-        UI.message("The pgyer_cl plugin is working!")
+        UI.message("pgyer_cl开始工作!")
 
         api_host = "https://www.pgyer.com/apiv2/app/upload"
         api_key = params[:api_key]
@@ -33,18 +33,19 @@ module Fastlane
 
         info = nil
 
-        #if api_key != "test"
-        #  build_file = [
-        #      params[:ipa],
-        #      params[:apk]
-        #  ].detect { |e| !e.to_s.empty? }
-        #
-        #  if build_file.nil?
-        #    UI.user_error!("You have to provide a build file")
-        #  end
-        #
-        #  UI.message "build_file: #{build_file}"
-        #
+        if api_key != "test"
+          build_file = [
+              params[:ipa],
+              params[:apk]
+          ].detect { |e| !e.to_s.empty? }
+
+          if build_file.nil?
+            UI.user_error!("您需要配置一个上传的文件")
+            return
+          end
+
+          UI.message "配置上传文件: #{build_file}"
+
           password = params[:password]
           if password.nil?
             password = ""
@@ -64,38 +65,37 @@ module Fastlane
           if channel_shortcut.nil?
             channel_shortcut = ""
           end
-        #
-        #  pgyer_client = Faraday.new(nil, conn_options) do |c|
-        #    c.request :multipart
-        #    c.request :url_encoded
-        #    c.response :json, content_type: /\bjson$/
-        #    c.adapter :net_http
-        #  end
-        #
-        #  params = {
-        #      '_api_key' => api_key,
-        #      'userKey' => user_key,
-        #      'buildPassword' => password,
-        #      'buildUpdateDescription' => update_description,
-        #      'buildInstallType' => install_type,
-        #      'buildInstallDate' => "2",
-        #      'buildChannelShortcut' => channel_shortcut,
-        #      'file' => Faraday::UploadIO.new(build_file, 'application/octet-stream')
-        #  }
-        #
-        #  UI.message "Start upload #{build_file} to pgyer..."
-        #
-        #  response = pgyer_client.post api_host, params
-        #  info = response.body
-        #
-        #  if info['code'] != 0
-        #    UI.user_error!("PGYER Plugin Error: #{info['message']}")
-        #    return
-        #  end
-        #
-        #  UI.success "Upload success. Visit this URL to see: https://www.pgyer.com/#{info['data']['buildShortcutUrl']}"
-        #else
-        #end
+
+          pgyer_client = Faraday.new(nil, conn_options) do |c|
+            c.request :multipart
+            c.request :url_encoded
+            c.response :json, content_type: /\bjson$/
+            c.adapter :net_http
+          end
+
+          params = {
+              '_api_key' => api_key,
+              'userKey' => user_key,
+              'buildPassword' => password,
+              'buildUpdateDescription' => update_description,
+              'buildInstallType' => install_type,
+              'buildInstallDate' => "2",
+              'buildChannelShortcut' => channel_shortcut,
+              'file' => Faraday::UploadIO.new(build_file, 'application/octet-stream')
+          }
+
+          UI.message "开始上传文件 #{build_file} 到蒲公英..."
+
+          response = pgyer_client.post api_host, params
+          info = response.body
+
+          if info['code'] != 0
+            UI.user_error!("蒲公英组件错误信息: #{info['message']}")
+            return
+          else
+            UI.success "蒲公英上传成功. 详见: https://www.pgyer.com/#{info['data']['buildShortcutUrl']}"
+          end
+        end
 
         appType = "Android";
         appName = "测试应用"
@@ -103,7 +103,6 @@ module Fastlane
         appBuildVersion = 1
         appUrl = "https://www.pgyer.com/#{channel_shortcut}"
 
-        appQrCode = 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2F1812.img.pp.sohu.com.cn%2Fimages%2Fblog%2F2009%2F11%2F18%2F18%2F8%2F125b6560a6ag214.jpg&refer=http%3A%2F%2F1812.img.pp.sohu.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1625120579&t=16aeec2521b107720b83971542983340';
         if info != nil
           # 应用类型
           if info['data']['buildType'] == 1 || info['data']['buildType'] == "1"
@@ -119,34 +118,11 @@ module Fastlane
           if channel_shortcut.nil?
             appUrl = "https://www.pgyer.com/#{info['data']['buildShortcutUrl']}"
           end
-          appQrCode = info['data']['buildQRCodeURL'];
+        else
         end
 
         unless fs_access_token.nil?
-          image_client = Faraday.new(nil, conn_options) do |c|
-            c.request :multipart
-            c.request :url_encoded
-            #c.head.headers['Authorization'] = "Bearer #{fs_access_token}"
-            c.response :json, content_type: /\bjson$/
-            c.adapter :net_http
-          end
-
-          imageFile = Faraday.new(nil?,conn_options).get appQrCode
-
-          image_params = {
-              'image_type' => user_key,
-              'image' => imageFile
-          }
-          imagePost = "https://open.feishu.cn/open-apis/image/v4/put/#{fs_access_token}"
-
-          response = image_client.post imagePost, image_params
-          imageInfo = response.body
-
-          if imageInfo['code'] != 0
-            UI.error('feishu error message: ' + imageInfo["msg"])
-          else
-            UI.success("Successfully upload image to feishu!")
-          end
+          UI.message("配置飞书参数")
 
           config = {
               "wide_screen_mode": false
@@ -155,20 +131,16 @@ module Fastlane
           header = {
               "title": {
                   "tag": "plain_text",
-                  "content": "#{appName}(#{appType})#{appEnvironment}发布"
+                  "content": "#{appName}"
               }
           }
 
           content = {
               "tag": "div",
               "text": {
-                  "tag": "plain_text",
-                  "content": "蒲公英版本:#{appVersion}+#{appBuildVersion}\n更新内容:\n#{update_description}"
+                  "tag": "lark_md",
+                  "content": "**#{appType}#{appEnvironment}发布**\n\n蒲公英版本:**#{appVersion}+#{appBuildVersion}**\n\n更新内容:\n**#{update_description}**"
               }
-          }
-
-          line = {
-              "tag": "hr"
           }
 
           action = {
@@ -186,60 +158,40 @@ module Fastlane
               ]
           }
 
-          if channel_shortcut != nil
-            image = {
-                "tag": "img",
-                "img_key": "#{imageInfo['data']['image_key']}",
-                "alt": {
-                    "tag": "plain_text",
-                    "content": "蒲公英二维码"
-                }
-            }
-          end
+          message_post = "https://open.feishu.cn/open-apis/bot/v2/hook/#{fs_access_token}";
 
-          messagePost = "https://open.feishu.cn/open-apis/bot/v2/hook/#{fs_access_token}";
+          params = {
+              "msg_type": "interactive",
+              "card": {
+                  "config": config,
+                  "header": header,
+                  "elements": [
+                      content,
+                      action,
+                  ]
+              }
+          }
 
-          if image == nil
-            params = {
-                "config": config,
-                "header": header,
-                "elements": [
-                    content,
-                    action,
-                ]
-            }
-          else
-            params = {
-                "config": config,
-                "header": header,
-                "elements": [
-                    content,
-                    line,
-                    image,
-                    action,
-                ]
-            }
-          end
+          UI.message("发送飞书消息")
 
           message_client = Faraday.new(nil, conn_options) do |c|
             c.request :json
             c.request :url_encoded
-            #c.head.headers['Authorization'] = "Bearer #{fs_access_token}"
             c.response :json, content_type: /\bjson$/
             c.adapter :net_http
           end
 
-          response = message_client.post messagePost, params
-          messageInfo = response.body
+          response = message_client.post message_post, params
+          message_info = response.body
 
-          if messageInfo['code'] != 0
-            UI.error('feishu error message: ' + messageInfo["msg"])
+          if message_info['StatusCode'] != 0
+            UI.error("飞书消息发送失败: #{message_info["StatusMessage"]}")
           else
-            UI.success("Successfully send message to feishu!")
+            UI.success('发送飞书消息成功');
           end
-        else
         end
 
+        UI.message('pgyer_cl工作结束!')
       end
 
       def self.description
@@ -264,12 +216,12 @@ module Fastlane
             FastlaneCore::ConfigItem.new(key: :api_key,
                                          env_name: "PGYER_API_KEY",
                                          description: "api_key in your pgyer account",
-                                         optional: true,
+                                         optional: false,
                                          type: String),
             FastlaneCore::ConfigItem.new(key: :user_key,
                                          env_name: "PGYER_USER_KEY",
                                          description: "user_key in your pgyer account",
-                                         optional: true,
+                                         optional: false,
                                          type: String),
             FastlaneCore::ConfigItem.new(key: :apk,
                                          env_name: "PGYER_APK",

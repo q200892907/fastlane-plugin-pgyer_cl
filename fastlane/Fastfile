@@ -1,12 +1,30 @@
-lane :test do
+lane :test do |op|
         puts "打包成功"
         puts "开始上传到蒲公英"
         #开始上传apk到蒲公英，这里用的是蒲公英提供的插件
         #update_description代表更新信息，password代表安装密码
         pgyer_cl(
-        update_description: "测试",
+        update_description: op[:desc],
         fs_access_token: "c6659c4f-3e2f-4ab8-ac8e-a8190e217927",
         environment: 'dev',
-        api_key:'api_key'
+        api_key:'27e81c87543c62ad9989f3604ae4659e',
+          user_key:'8bd7115b752faba26daeddcab9e71e81',
+          password:'',
+          install_type:'1',
+          apk:'/Users/chenlei/Documents/fastlane/fastlane-plugin-pgyer_cl/app-release.apk',
+          channel_shortcut: 'riki_user_qa_android'
+        )
+end
+
+lane :test1 do |op|
+        puts "打包成功"
+        puts "开始上传到蒲公英"
+        #开始上传apk到蒲公英，这里用的是蒲公英提供的插件
+        #update_description代表更新信息，password代表安装密码
+        pgyer_cl(
+        update_description: op[:desc],
+        fs_access_token: "c6659c4f-3e2f-4ab8-ac8e-a8190e217927",
+        environment: 'dev',
+        api_key:'test',
         )
 end
