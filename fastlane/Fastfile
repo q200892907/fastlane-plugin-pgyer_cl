@@ -1,0 +1,12 @@
+lane :test do
+        puts "打包成功"
+        puts "开始上传到蒲公英"
+        #开始上传apk到蒲公英，这里用的是蒲公英提供的插件
+        #update_description代表更新信息，password代表安装密码
+        pgyer_cl(
+        update_description: "测试",
+        fs_access_token: "c6659c4f-3e2f-4ab8-ac8e-a8190e217927",
+        environment: 'dev',
+        api_key:'api_key'
+        )
+end
