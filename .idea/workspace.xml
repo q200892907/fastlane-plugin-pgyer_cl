@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc07a063-af88-444f-a3b0-229152a4a159" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fastlane/Fastfile" beforeDir="false" afterPath="$PROJECT_DIR$/fastlane/Fastfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/actions/pgyer_cl_action.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/actions/pgyer_cl_action.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/version.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fastlane/plugin/pgyer_cl/version.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +114,8 @@
       <workItem from="1622540907163" duration="896000" />
       <workItem from="1622542236385" duration="455000" />
       <workItem from="1622544045022" duration="636000" />
+      <workItem from="1622614245291" duration="189000" />
+      <workItem from="1622637432109" duration="841000" />
     </task>
     <servers />
   </component>

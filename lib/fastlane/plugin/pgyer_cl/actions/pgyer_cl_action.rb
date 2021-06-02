@@ -131,16 +131,64 @@ module Fastlane
           header = {
               "title": {
                   "tag": "plain_text",
-                  "content": "#{appName}"
-              }
+                  "content": "APP发布通知"
+              },
+              "template": "green"
           }
 
           content = {
               "tag": "div",
-              "text": {
-                  "tag": "lark_md",
-                  "content": "**#{appType}#{appEnvironment}发布**\n\n蒲公英版本:**#{appVersion}+#{appBuildVersion}**\n\n更新内容:\n**#{update_description}**"
-              }
+              "fields": [
+                  {
+                      "is_short": true,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": "**APP名称：**\n#{appName}"
+                      }
+                  },
+                  {
+                      "is_short": true,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": "**环境：**\n#{appEnvironment}"
+                      }
+                  },
+                  {
+                      "is_short": false,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": ""
+                      }
+                  },
+                  {
+                      "is_short": true,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": "**蒲公英版本：**\n#{appVersion}+#{appBuildVersion}"
+                      }
+                  },
+                  {
+                      "is_short": true,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": "**下载地址：**\n<a>#{appUrl}</a>"
+                      }
+                  },
+                  {
+                      "is_short": false,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": ""
+                      }
+                  },
+                  {
+                      "is_short": false,
+                      "text": {
+                          "tag": "lark_md",
+                          "content": "**更新内容：**\n#{update_description}"
+                      }
+                  }
+              ]
           }
 
           action = {
