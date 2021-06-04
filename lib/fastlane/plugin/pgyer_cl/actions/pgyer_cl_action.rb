@@ -143,7 +143,7 @@ module Fastlane
                       "is_short": true,
                       "text": {
                           "tag": "lark_md",
-                          "content": "**APP名称：**\n#{appName}"
+                          "content": "**APP名称：**\n#{appName}(#{appType})"
                       }
                   },
                   {
